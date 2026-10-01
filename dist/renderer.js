@@ -11,7 +11,7 @@ async function card(result,kind){
  const tagY=225+(titleLines.length-1)*64+56;ctx.fillStyle='#824738';ctx.font='25px "Nanum Myeongjo", serif';ctx.fillText(result.tag,88,tagY);
  ctx.strokeStyle='#cfc4b5';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(88,tagY+30);ctx.lineTo(990,tagY+30);ctx.stroke();
  const start=tagY+83;let size=36,wrapped,total;
- do{ctx.font=`${size}px "Nanum Myeongjo", serif`;wrapped=result.paragraphs.map(p=>lines(ctx,p,900));total=wrapped.reduce((n,a)=>n+a.length*size*1.52+22,0)-22;if(start+total<930||size<=26)break;size--;}while(size>=26);
+ do{ctx.font=`${size}px "Nanum Myeongjo", serif`;wrapped=result.paragraphs.map(p=>lines(ctx,p,900));total=wrapped.reduce((n,a)=>n+a.length*size*1.52+22,0)-22;if(start+total<930||size<=22)break;size--;}while(size>=22);
  if(start+total>=930)throw Error('풀이가 이미지 공간을 넘었어요. 이름을 짧게 바꿔 다시 시도해주세요.');
  let y=start;wrapped.forEach((p,index)=>{ctx.fillStyle=index===wrapped.length-1?'#824738':'#302d29';for(const line of p){ctx.fillText(line,88,y);y+=size*1.52;}y+=22;});
  ctx.font='20px "Nanum Myeongjo", serif';ctx.fillStyle='#746c61';ctx.fillText('우리 아이 사주 · 재미로 읽는 인연 이야기',88,1286);

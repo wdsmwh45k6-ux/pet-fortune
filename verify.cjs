@@ -4,6 +4,7 @@ assert.equal(E.calc('1986-05-29').pillar,'癸酉');
 for(const s of ['2025-02-29','1900-02-29','2026-04-31','1899-01-01','9999-01-01','2021-13-01','2021-00-01'])assert.throws(()=>E.calc(s));
 assert.doesNotThrow(()=>E.calc('2000-02-29'));
 const p=E.pet({date:'2021-04-14',name:'루이'});assert.deepEqual(p,E.pet({date:'2021-04-14',name:'루이'}));
+for(const mode of ['birth','adoption']){const a={date:'2021-04-14',name:'루이',mode};assert.deepEqual(E.pet(a),p);assert.deepEqual(E.pair(E.pet(a),'1986-04-13'),E.pair(p,'1986-04-13'));assert.deepEqual(E.friends(a,a),E.friends({...a,mode:'birth'},{...a,mode:'birth'}));}
 assert.equal(C.stems.length,10);assert.equal(C.branches.length,12);assert.equal(C.adoption.length,10);assert.equal(C.pairs.length,5);
 const {createCanvas,Image,GlobalFonts}=require(process.env.CODEX_PRIMARY_RUNTIME_NODE_MODULES+'/@napi-rs/canvas');
 GlobalFonts.registerFromPath(__dirname+'/dist/fonts/files/nanum-myeongjo-korean-400-normal.woff2','Nanum Myeongjo');
