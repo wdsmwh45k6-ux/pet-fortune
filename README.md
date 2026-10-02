@@ -6,7 +6,7 @@ Static browser-only app. No AI calls, tracking, account DB, or input persistence
 
 - Gregorian dates, 1900-01-01 through current Asia/Seoul date; reject impossible dates. Birthday fields intentionally omit birth time and owner name.
 - lunar-javascript 1.7.7 MIT, vendored unchanged. Use Solar.fromYmd(...).getLunar().getDayGanIndex(), getDayZhiIndex(), getDayInGanZhi(). Date-only civil midnight rollover, not late-zi 23:00. No invented birth hour.
-- Intentionally DAY-PILLAR ONLY. No year/month/hour interpretation, DST, place/time correction, strength analysis, daewoon or health/lifespan predictions. This avoids an undisclosed noon assumption and solar-term boundaries. Future full chart support requires separate scope and verification.
+- Year/month/day pillars are displayed. Editorial interpretation remains day-pillar centered; no hour pillar, full-chart strength analysis, daewoon or health/lifespan predictions. See the reviewed three-pillar calculation contract below.
 - 10 stem drafts + 12 branch drafts yield 60 valid day-pillar combinations, not 120 (parity). Same day pillar repeats on a 60-day cycle. Same date/content version gives same text; many dates share results.
 - Ordered five-element indexes: wood, fire, earth, metal, water. Delta=(owner-pet+5)%5: 0 same, 1 pet generates owner, 2 pet controls owner, 3 owner controls pet, 4 owner generates pet. 25 ordered pairs collapse to 5 relation narratives, with element labels distinguishing pairs. No numeric match score.
 - Adoption: user-selected alternative date; now applies the same day-pillar interpretation and result format as birth mode. Input copy explains date-based entertainment; this does not establish an actual birthday.
@@ -44,3 +44,9 @@ About, calculation guide, privacy, contact, license and three original journal a
 ## Sources
 
 https://github.com/6tail/lunar-javascript (MIT, version 1.7.7). Font: Nanum Myeongjo via Fontsource (OFL). Dependency documentation's example: 1986-05-29 = 癸酉 day. Export/test notes in verify.cjs.
+
+## Review draft: three calendar pillars
+
+Year and month pillars now follow solar terms converted from UTC+8 to fixed UTC+9 (KST). On a term's Korean calendar date, the new pillar applies from 00:00 as an explicit date-only simplification. No birth time is imputed. Historical Korean civil-time changes are not modeled. Transition dates are flagged; precise birth-time readings can differ. Year/month labels are displayed, while editorial personality and compatibility rules still center on day stem/branch, not full-chart strength analysis.
+
+`node verify-pillars.cjs`: six fixed reference cases, 84 term transitions across seven sampled years, including three UTC+8/UTC+9 date rollovers. Layout tests cover 290 cards. Birth/adoption formats remain identical, so the visible input date is neutrally labeled without claiming it is a birthday. This draft is awaiting user text review and has not been deployed.

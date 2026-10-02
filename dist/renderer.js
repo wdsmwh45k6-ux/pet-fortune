@@ -8,7 +8,7 @@ async function card(result,kind){
  await document.fonts.load('700 32px "Nanum Myeongjo"',text);await document.fonts.load('32px "Nanum Myeongjo"',text);await document.fonts.ready;
  const canvas=document.createElement('canvas');canvas.width=1080;canvas.height=1350;const ctx=canvas.getContext('2d');ctx.drawImage(await backgrounds[kind],0,0,1080,1350);
  ctx.fillStyle='#824738';ctx.font='700 30px "Nanum Myeongjo", serif';ctx.fillText(result.kind,88,104);
- ctx.fillStyle='#756c61';ctx.font='25px "Nanum Myeongjo", serif';ctx.fillText(result.name,88,156);
+ ctx.fillStyle='#756c61';ctx.font='25px "Nanum Myeongjo", serif';ctx.fillText(result.name+(result.dateLine?' · '+result.dateLine:''),88,156);
  ctx.fillStyle='#302d29';ctx.font='700 52px "Nanum Myeongjo", serif';const titleLines=lines(ctx,result.title,900);titleLines.forEach((s,i)=>ctx.fillText(s,88,225+i*64));
  const tagY=225+(titleLines.length-1)*64+56;ctx.fillStyle='#824738';ctx.font='25px "Nanum Myeongjo", serif';ctx.fillText(result.tag,88,tagY);
  ctx.strokeStyle='#cfc4b5';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(88,tagY+30);ctx.lineTo(990,tagY+30);ctx.stroke();
